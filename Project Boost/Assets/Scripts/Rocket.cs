@@ -22,6 +22,7 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(Application.platform);
         if (state == State.Alive)
         {
             Rotate();
@@ -46,8 +47,26 @@ public class Rocket : MonoBehaviour
                 break;
             default:
                 state = State.Dying;
-                Invoke("LoadFirstLevel", 1f);
+                Invoke("ReloadLevel", 1f);
                 break;
+        }
+    }
+
+    private void ReloadLevel()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
+    }
+
+    private void LoadNextScene()
+    {
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        if (nextSceneIndex >= SceneManager.sceneCountInBuildSettings)
+        {
+            LoadFirstLevel();
+        } else
+        {
+            SceneManager.LoadScene(nextSceneIndex);
         }
     }
 
@@ -56,28 +75,42 @@ public class Rocket : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    private void LoadNextScene()
-    {
-        SceneManager.LoadScene(1);
-    }
-
     private void Rotate()
     {
         rigidBody.freezeRotation = true;
 
-        //Vector3 angularVelocity = rigidBody.angularVelocity;
+        //Vector3 angularVelocity = rigidBody.angularVelocity
         float rotationThisSpeed = rcsThrust * Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if(Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
         {
-            transform.Rotate(Vector3.forward * rotationThisSpeed);
-        }
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        {
-            transform.Rotate(-Vector3.forward * rotationThisSpeed);
+            Debug.LogWarning("Do mobile here");
+            foreach (Touch touch in Input.touches)
+            {
+
+            }
+        } else {
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            {
+                RotateLeft(rotationThisSpeed);
+            }
+            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            {
+                RotateRight(rotationThisSpeed);
+            }
         }
 
         rigidBody.freezeRotation = false;
+    }
+
+    private void RotateRight(float rotationThisSpeed)
+    {
+        transform.Rotate(-Vector3.forward * rotationThisSpeed);
+    }
+
+    private void RotateLeft(float rotationThisSpeed)
+    {
+        transform.Rotate(Vector3.forward * rotationThisSpeed);
     }
 
     private void Thrust()
