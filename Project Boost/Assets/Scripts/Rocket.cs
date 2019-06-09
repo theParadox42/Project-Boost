@@ -22,7 +22,6 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Application.platform);
         if (state == State.Alive)
         {
             Rotate();
@@ -85,10 +84,12 @@ public class Rocket : MonoBehaviour
         if(Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
         {
             Debug.LogWarning("Do mobile here");
+            /*
             foreach (Touch touch in Input.touches)
             {
 
             }
+            */          
         } else {
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
