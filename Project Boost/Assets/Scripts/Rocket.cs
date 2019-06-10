@@ -6,6 +6,9 @@ public class Rocket : MonoBehaviour
 
     [SerializeField] float rcsThrust = 100f;
     [SerializeField] float mainThrust = 25f;
+    [SerializeField] AudioClip thrustAudio;
+    [SerializeField] AudioClip deathAudio;
+    [SerializeField] AudioClip successAudio;
 
     Rigidbody rigidBody;
     AudioSource audioSource;
@@ -35,6 +38,7 @@ public class Rocket : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         if (state != State.Alive) return;
+
         switch (collision.gameObject.tag)
         {
             case "Friendly":
@@ -118,15 +122,20 @@ public class Rocket : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            rigidBody.AddRelativeForce(Vector3.up * mainThrust);
-            if (!audioSource.isPlaying)
-            {
-                audioSource.Play();
-            }
+            Thrusting();
         }
         else
         {
             audioSource.Stop();
+        }
+    }
+
+    private void Thrusting()
+    {
+        rigidBody.AddRelativeForce(Vector3.up * mainThrust);
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(thrustAudio);
         }
     }
 }
