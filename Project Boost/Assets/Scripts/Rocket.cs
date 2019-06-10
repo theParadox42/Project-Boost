@@ -4,15 +4,25 @@ using UnityEngine.SceneManagement;
 public class Rocket : MonoBehaviour
 {
 
+    // Power levels
     [SerializeField] float rcsThrust = 100f;
     [SerializeField] float mainThrust = 25f;
+
+    // Audio
     [SerializeField] AudioClip thrustAudio;
     [SerializeField] AudioClip deathAudio;
     [SerializeField] AudioClip successAudio;
 
+    // Particle systems
+    [SerializeField] ParticleSystem thrustParticles;
+    [SerializeField] ParticleSystem deathParticles;
+    [SerializeField] ParticleSystem successParticles;
+
+    // Components
     Rigidbody rigidBody;
     AudioSource audioSource;
 
+    // Current State
     enum State { Alive, Dying, Transcending };
     State state = State.Alive;
 
@@ -27,14 +37,12 @@ public class Rocket : MonoBehaviour
     {
         if (state == State.Alive)
         {
-            Rotate();
-            Thrust();
-        } else
-        {
-            audioSource.Stop();
+            RespondToThrustInput();
+            RespondToRotateInput();
         }
     }
 
+    // Called on a collision, object passed in
     void OnCollisionEnter(Collision collision)
     {
         if (state != State.Alive) return;
@@ -45,22 +53,42 @@ public class Rocket : MonoBehaviour
                 // Do nothing
                 break;
             case "Finish":
-                state = State.Transcending;
-                Invoke("LoadNextScene", 1f);
+                StartSuccessSequence();
                 break;
             default:
-                state = State.Dying;
-                Invoke("ReloadLevel", 1f);
+                StartDeathSequence();
                 break;
         }
     }
 
+    // Called when the rocket has died
+    private void StartDeathSequence()
+    {
+        state = State.Dying;
+        audioSource.Stop();
+        audioSource.PlayOneShot(deathAudio);
+        Invoke("ReloadLevel", 2f);
+        deathParticles.Play();
+    }
+
+    // Called when the rocket has finished the level
+    private void StartSuccessSequence()
+    {
+        state = State.Transcending;
+        audioSource.Stop();
+        audioSource.PlayOneShot(successAudio);
+        Invoke("LoadNextScene", 1f);
+        successParticles.Play();
+    }
+
+    // Reload the current level, usually on death
     private void ReloadLevel()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
     }
 
+    // Load next level, on level finish
     private void LoadNextScene()
     {
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
@@ -73,12 +101,14 @@ public class Rocket : MonoBehaviour
         }
     }
 
+    // Load the very first level, on finish of all existing levels in the build settings
     private void LoadFirstLevel()
     {
         SceneManager.LoadScene(0);
     }
 
-    private void Rotate()
+    // Respond to the user input relating to rotational controls
+    private void RespondToRotateInput()
     {
         rigidBody.freezeRotation = true;
 
@@ -108,34 +138,40 @@ public class Rocket : MonoBehaviour
         rigidBody.freezeRotation = false;
     }
 
+    // Rotate the rocket clockwise
     private void RotateRight(float rotationThisSpeed)
     {
         transform.Rotate(-Vector3.forward * rotationThisSpeed);
     }
 
+    // Rotate the rocket counterclockwise
     private void RotateLeft(float rotationThisSpeed)
     {
         transform.Rotate(Vector3.forward * rotationThisSpeed);
     }
 
-    private void Thrust()
+    // Respond to user input relating to thrusting controls
+    private void RespondToThrustInput()
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            Thrusting();
+            ApplyThrust();
         }
         else
         {
             audioSource.Stop();
+            thrustParticles.Stop();
         }
     }
 
-    private void Thrusting()
+    // Apply a thrustlike force to the rocket
+    private void ApplyThrust()
     {
         rigidBody.AddRelativeForce(Vector3.up * mainThrust);
         if (!audioSource.isPlaying)
         {
             audioSource.PlayOneShot(thrustAudio);
         }
+        thrustParticles.Play();
     }
 }
