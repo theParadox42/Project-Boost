@@ -503,8 +503,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d10d56e9b37e84d8b85d8ae2c1ff1177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rcsThrust: 130
-  mainThrust: 200
+  rcsThrust: 250
+  mainThrust: 220
+  levelLoadDelay: 2
   thrustAudio: {fileID: 8300000, guid: 1cb7144a919984ceda4e41433740ba4f, type: 3}
   deathAudio: {fileID: 8300000, guid: 0577077d2a624459abacc9aeb202f773, type: 3}
   successAudio: {fileID: 8300000, guid: 19e71c546e1ce40eba9c8d2dda7d5cea, type: 3}
