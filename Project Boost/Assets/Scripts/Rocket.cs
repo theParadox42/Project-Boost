@@ -28,6 +28,12 @@ public class Rocket : MonoBehaviour
     enum State { Alive, Dying, Transcending };
     State state = State.Alive;
 
+    // Mobile controls
+    bool isHolding;
+    int waitingTime = 20;
+    int timeWait;
+    bool thrustingThisFrame = false;
+
     // Start is called before the first frame update
     void Start() {
         rigidBody = GetComponent<Rigidbody>();
@@ -39,8 +45,8 @@ public class Rocket : MonoBehaviour
     {
         if (state == State.Alive)
         {
-            RespondToThrustInput();
             RespondToRotateInput();
+            RespondToThrustInput();
         } else
         {
             thrustParticles.Stop();
@@ -117,30 +123,145 @@ public class Rocket : MonoBehaviour
     {
         rigidBody.freezeRotation = true;
 
-        //Vector3 angularVelocity = rigidBody.angularVelocity
         float rotationThisSpeed = rcsThrust * Time.deltaTime;
 
-        if(Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            Debug.LogWarning("Do mobile here");
-            /*
-            foreach (Touch touch in Input.touches)
-            {
-
-            }
-            */          
-        } else {
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-            {
-                RotateLeft(rotationThisSpeed);
-            }
-            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-            {
-                RotateRight(rotationThisSpeed);
-            }
-        }
+        HandleMobile(rotationThisSpeed);
+        HandleKeyboard(rotationThisSpeed);
 
         rigidBody.freezeRotation = false;
+    }
+
+    // Keyboard controls
+    private void HandleKeyboard(float rotationThisSpeed)
+    {
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        {
+            RotateLeft(rotationThisSpeed);
+        }
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        {
+            RotateRight(rotationThisSpeed);
+        }
+    }
+
+    // Mobile controls
+    private void HandleMobile(float rotationThisSpeed)
+    {
+        // v1
+        {/*
+        bool onLeft = false;
+        bool onRight = false;
+        bool someFinger = false;
+        thrustingThisFrame = false;
+        foreach (Touch touch in Input.touches)
+        {
+            someFinger = true;
+            if (touch.position.x <= Screen.width / 2)
+            {
+                onLeft = true;
+            }
+            if (touch.position.x >= Screen.width / 2)
+            {
+                onRight = true;
+            }
+        }
+        if(!someFinger && isHolding)
+        {
+            isHolding = false;
+        }
+        if (isHolding)
+        {
+            if(!onLeft || !onRight)
+            {
+                timeWait--;
+                if(timeWait <= 0)
+                {
+                    isHolding = false;
+                }
+            } else
+            {
+                timeWait = waitingTime;
+            }
+        }
+        if ((onLeft && onRight) || isHolding)
+        {
+            ApplyThrust();
+        }
+        else if (onLeft)
+        {
+            ApplyThrust(0.3f);
+            RotateLeft(rotationThisSpeed);
+        }
+        else if (onRight)
+        {
+            RotateRight(rotationThisSpeed);
+            ApplyThrust(0.3f);
+        }
+        */}
+        // v2
+        {/*
+        bool onLeft = false;
+        bool onRight = false;
+        bool onBottom = false;
+        thrustingThisFrame = false;
+        foreach (Touch touch in Input.touches)
+        {
+            if (touch.position.y <= Screen.height / 3)
+            {
+                onBottom = true;
+            } 
+            if (touch.position.x <= Screen.width / 2)
+            {
+                onLeft = true;
+            }
+            if (touch.position.x >= Screen.width / 2)
+            {
+                onRight = true;
+            }
+        }
+        if (onBottom || (onLeft && onRight))
+        {
+            ApplyThrust(1f);
+        }
+        else if (onLeft)
+        {
+            RotateLeft(rotationThisSpeed);
+        }
+        else if (onRight)
+        {
+            RotateRight(rotationThisSpeed);
+        }
+        */}
+        // v3
+        thrustingThisFrame = false;
+        float yPercent = 0.7f;
+        float x1Percent = 0.4f;
+        float x2Percent = 0.7f;
+        bool thrustPressed = false;
+        bool rightPressed = false;
+        bool leftPressed = false;
+        foreach (Touch touch in Input.touches)
+        {
+            //print(touch.position.y);
+            if (touch.position.y <= Screen.height * (1 - yPercent))
+            {
+                float tx = touch.position.x;
+                float sw = Screen.width;
+                if (tx <= sw * x1Percent)
+                {
+                    thrustPressed = true; ;
+                } else if(tx <= sw * x2Percent)
+                {
+                    leftPressed = true;
+                } else
+                {
+                    rightPressed = true;
+                }
+            }
+            if (thrustPressed) ApplyThrust();
+            if (rightPressed) RotateRight(rotationThisSpeed); 
+            if (leftPressed) RotateLeft(rotationThisSpeed);
+        }
     }
 
     // Rotate the rocket clockwise
@@ -162,7 +283,7 @@ public class Rocket : MonoBehaviour
         {
             ApplyThrust();
         }
-        else
+        else if(!thrustingThisFrame)
         {
             audioSource.Stop();
             thrustParticles.Stop();
@@ -170,13 +291,21 @@ public class Rocket : MonoBehaviour
     }
 
     // Apply a thrustlike force to the rocket
-    private void ApplyThrust()
+    private void ApplyThrust(float mult)
     {
-        rigidBody.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime * 10);
+        thrustingThisFrame = true;
+        mult = mult > Mathf.Epsilon ? mult : 1f;
+        rigidBody.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime * 10 * mult);
         if (!audioSource.isPlaying)
         {
             audioSource.PlayOneShot(thrustAudio);
         }
         thrustParticles.Play();
+    }
+
+    // Without input
+    private void ApplyThrust()
+    {
+        ApplyThrust(1f);
     }
 }
