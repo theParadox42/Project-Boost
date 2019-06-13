@@ -215,6 +215,7 @@ UnityEngine.MonoBehaviour::StopCoroutineManaged
 UnityEngine.MonoBehaviour::set_useGUILayout
 UnityEngine.MonoBehaviour::StartCoroutineManaged
 UnityEngine.MonoBehaviour::StartCoroutineManaged2
+UnityEngine.Networking.CertificateHandler::Release
 UnityEngine.NoAllocHelpers::ExtractArrayFromList
 UnityEngine.Object::GetName
 UnityEngine.Object::ToString
