@@ -147,120 +147,66 @@ public class Rocket : MonoBehaviour
     // Mobile controls
     private void HandleMobile(float rotationThisSpeed)
     {
-        // v1
-        {/*
-        bool onLeft = false;
-        bool onRight = false;
-        bool someFinger = false;
-        thrustingThisFrame = false;
-        foreach (Touch touch in Input.touches)
-        {
-            someFinger = true;
-            if (touch.position.x <= Screen.width / 2)
-            {
-                onLeft = true;
-            }
-            if (touch.position.x >= Screen.width / 2)
-            {
-                onRight = true;
-            }
-        }
-        if(!someFinger && isHolding)
-        {
-            isHolding = false;
-        }
-        if (isHolding)
-        {
-            if(!onLeft || !onRight)
-            {
-                timeWait--;
-                if(timeWait <= 0)
-                {
-                    isHolding = false;
-                }
-            } else
-            {
-                timeWait = waitingTime;
-            }
-        }
-        if ((onLeft && onRight) || isHolding)
-        {
-            ApplyThrust();
-        }
-        else if (onLeft)
-        {
-            ApplyThrust(0.3f);
-            RotateLeft(rotationThisSpeed);
-        }
-        else if (onRight)
-        {
-            RotateRight(rotationThisSpeed);
-            ApplyThrust(0.3f);
-        }
-        */}
-        // v2
-        {/*
-        bool onLeft = false;
-        bool onRight = false;
-        bool onBottom = false;
-        thrustingThisFrame = false;
-        foreach (Touch touch in Input.touches)
-        {
-            if (touch.position.y <= Screen.height / 3)
-            {
-                onBottom = true;
-            } 
-            if (touch.position.x <= Screen.width / 2)
-            {
-                onLeft = true;
-            }
-            if (touch.position.x >= Screen.width / 2)
-            {
-                onRight = true;
-            }
-        }
-        if (onBottom || (onLeft && onRight))
-        {
-            ApplyThrust(1f);
-        }
-        else if (onLeft)
-        {
-            RotateLeft(rotationThisSpeed);
-        }
-        else if (onRight)
-        {
-            RotateRight(rotationThisSpeed);
-        }
-        */}
         // v3
         thrustingThisFrame = false;
-        float yPercent = 0.7f;
-        float x1Percent = 0.4f;
-        float x2Percent = 0.7f;
         bool thrustPressed = false;
         bool rightPressed = false;
         bool leftPressed = false;
+        float yPercent = 0.7f;
+        float x1Percent = 0.4f;
+        float x2Percent = 0.7f;
+
+        if (Input.GetMouseButton(0) || Input.GetMouseButton(1)) {
+            if (Input.mousePosition.y <= Screen.height * (1 - yPercent))
+            {
+                float tx = Input.mousePosition.x;
+                float sw = Screen.width;
+                if (tx <= sw * x1Percent)
+                {
+                    thrustPressed = true;
+                }
+                else if (tx <= sw * x2Percent)
+                {
+                    leftPressed = true;
+                }
+                else
+                {
+                    rightPressed = true;
+                }
+            }
+        }
+
         foreach (Touch touch in Input.touches)
         {
-            //print(touch.position.y);
             if (touch.position.y <= Screen.height * (1 - yPercent))
             {
                 float tx = touch.position.x;
                 float sw = Screen.width;
                 if (tx <= sw * x1Percent)
                 {
-                    thrustPressed = true; ;
-                } else if(tx <= sw * x2Percent)
+                    thrustPressed = true;
+                }
+                else if (tx <= sw * x2Percent)
                 {
                     leftPressed = true;
-                } else
+                }
+                else
                 {
                     rightPressed = true;
                 }
             }
-            if (thrustPressed) ApplyThrust();
-            if (rightPressed) RotateRight(rotationThisSpeed); 
-            if (leftPressed) RotateLeft(rotationThisSpeed);
+        }
+
+        if (thrustPressed) {
+            ApplyThrust();
+        }
+        if (rightPressed)
+        {
+            RotateRight(rotationThisSpeed);
+        }
+        if (leftPressed)
+        {
+            RotateLeft(rotationThisSpeed);
         }
     }
 
