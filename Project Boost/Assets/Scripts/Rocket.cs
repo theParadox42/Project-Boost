@@ -29,10 +29,7 @@ public class Rocket : MonoBehaviour
     State state = State.Alive;
 
     // Mobile controls
-    bool isHolding;
-    int waitingTime = 20;
-    int timeWait;
-    bool thrustingThisFrame = false;
+    private bool thrustingThisFrame;
 
     // Start is called before the first frame update
     void Start() {
