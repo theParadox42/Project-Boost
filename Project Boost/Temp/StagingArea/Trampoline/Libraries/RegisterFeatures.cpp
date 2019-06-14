@@ -9,4 +9,3 @@ void RegisterFeatures()
     UnityEnableGyroscope(false);
     UnityEnableStylusTouch(false);
 }
-
