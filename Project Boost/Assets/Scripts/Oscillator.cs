@@ -33,15 +33,15 @@ public class Oscillator : MonoBehaviour
         }
         movementFactor = rawSinWave / 2f + 0.5f;
         Vector3 offset = movementVector * movementFactor;
-        if (offset.x <= Mathf.Epsilon)
+        if (Mathf.Abs(offset.x) <= Mathf.Epsilon)
         {
             offset.x = transform.position.x - startingPos.x;
         }
-        if(offset.y <= Mathf.Epsilon)
+        if(Mathf.Abs(offset.y) <= Mathf.Epsilon)
         {
             offset.y = startingPos.y - transform.position.y;
         }
-        if(offset.z <= Mathf.Epsilon)
+        if(Mathf.Abs(offset.z) <= Mathf.Epsilon)
         {
             offset.z = startingPos.z - transform.position.z;
         }
