@@ -153,7 +153,7 @@ public class Rocket : MonoBehaviour
         float x1Percent = 0.4f;
         float x2Percent = 0.7f;
 
-        if (Input.GetMouseButton(0) || Input.GetMouseButton(1)) {
+        if ((Input.GetMouseButton(0) || Input.GetMouseButton(1)) && Input.touches.Length == 0) {
             if (Input.mousePosition.y <= Screen.height * (1 - yPercent))
             {
                 float tx = Input.mousePosition.x;
