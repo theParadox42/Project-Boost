@@ -32,7 +32,8 @@ public class Rocket : MonoBehaviour
     private bool thrustingThisFrame;
 
     // Start is called before the first frame update
-    void Start() {
+    void Start()
+    {
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
     }
@@ -103,7 +104,8 @@ public class Rocket : MonoBehaviour
         if (nextSceneIndex >= SceneManager.sceneCountInBuildSettings)
         {
             LoadFirstLevel();
-        } else
+        }
+        else
         {
             SceneManager.LoadScene(nextSceneIndex);
         }
@@ -194,7 +196,8 @@ public class Rocket : MonoBehaviour
             }
         }
 
-        if (thrustPressed) {
+        if (thrustPressed)
+        {
             ApplyThrust();
         }
         if (rightPressed)
