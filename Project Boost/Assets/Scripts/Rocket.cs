@@ -101,20 +101,7 @@ public class Rocket : MonoBehaviour
     private void LoadNextScene()
     {
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-        if (nextSceneIndex >= SceneManager.sceneCountInBuildSettings)
-        {
-            LoadFirstLevel();
-        }
-        else
-        {
-            SceneManager.LoadScene(nextSceneIndex);
-        }
-    }
-
-    // Load the very first level, on finish of all existing levels in the build settings
-    private void LoadFirstLevel()
-    {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(nextSceneIndex);
     }
 
     // Respond to the user input relating to rotational controls
