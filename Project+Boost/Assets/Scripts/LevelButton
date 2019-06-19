@@ -1,0 +1,10 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+ 
+public class LevelButton : MonoBehaviour {
+
+    int level = 1;
+    public void Set(int setLevel){
+        level = setLevel;
+    }
+}
