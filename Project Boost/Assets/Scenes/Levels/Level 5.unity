@@ -726,22 +726,22 @@ PrefabInstance:
     - target: {fileID: 8802735900513526287, guid: 69a5622a8b58f4991b7463c717974df4,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 4.5741e-41
+      value: 1.4205e-41
       objectReference: {fileID: 0}
     - target: {fileID: 8802735900513526287, guid: 69a5622a8b58f4991b7463c717974df4,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 9.185e-41
       objectReference: {fileID: 0}
     - target: {fileID: 8802735900513526287, guid: 69a5622a8b58f4991b7463c717974df4,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0
+      value: Infinity
       objectReference: {fileID: 0}
     - target: {fileID: 8802735900513526287, guid: 69a5622a8b58f4991b7463c717974df4,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 0
+      value: Infinity
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69a5622a8b58f4991b7463c717974df4, type: 3}
@@ -854,8 +854,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementVector: {x: 12, y: 0, z: 0}
-  period: 3
-  useCos: 0
+  period: 4
+  useCos: 1
 --- !u!1001 &1644302353
 PrefabInstance:
   m_ObjectHideFlags: 0
