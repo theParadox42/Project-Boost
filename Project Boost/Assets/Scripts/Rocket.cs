@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 public class Rocket : MonoBehaviour
 {
 
+    #region Variables
+
     // Power levels
     [SerializeField] float rcsThrust = 100f;
     [SerializeField] float mainThrust = 25f;
@@ -31,6 +33,9 @@ public class Rocket : MonoBehaviour
     // Mobile controls
     private bool thrustingThisFrame;
 
+    #endregion
+
+    #region Events
     // Start is called before the first frame update
     void Start()
     {
@@ -70,6 +75,10 @@ public class Rocket : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Actions
+
     // Called when the rocket has died
     private void StartDeathSequence()
     {
@@ -102,8 +111,12 @@ public class Rocket : MonoBehaviour
     {
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
         SceneManager.LoadScene(nextSceneIndex);
+        SaveProgress.SavePlayer(SceneManager.GetActiveScene().buildIndex);
     }
 
+    #endregion 
+
+    #region Inputs & Outputs
     // Respond to the user input relating to rotational controls
     private void RespondToRotateInput()
     {
@@ -241,4 +254,7 @@ public class Rocket : MonoBehaviour
     {
         ApplyThrust(1f);
     }
+
+    #endregion
+
 }

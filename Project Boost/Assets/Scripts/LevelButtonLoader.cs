@@ -11,6 +11,7 @@ public class LevelButtonLoader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        int levelsFinished = SaveProgress.RetrieveData().levelsCompleted;
         int levelCount = SceneManager.sceneCountInBuildSettings - 3;
         bool isLeft = true;
         float by = 50f + 19.75f;
@@ -18,11 +19,16 @@ public class LevelButtonLoader : MonoBehaviour
         RectTransform parentRectTransform = transform.parent.GetComponent<RectTransform>();
         for (var i = 0; i < levelCount; i++)
         {
-            CreateButton(ref isLeft, ref by, ref level, parentRectTransform);
+            CreateButton(ref isLeft, ref by, ref level, parentRectTransform, levelsFinished, i);
         }
     }
 
-    private void CreateButton(ref bool isLeft, ref float by, ref int level, RectTransform parentRectTransform)
+    private void CreateButton(ref bool isLeft,
+                              ref float by,
+                              ref int level,
+                              RectTransform parentRectTransform,
+                              int levelsCompleted,
+                              int i)
     {
         Button newLevelButton = Instantiate(isLeft ? LevelButtonLeft : LevelButtonRight, parentRectTransform) as Button;
         var rectTransform = newLevelButton.GetComponent<RectTransform>();
@@ -35,6 +41,11 @@ public class LevelButtonLoader : MonoBehaviour
         LevelButton buttonComponent = newLevelButton.GetComponent<LevelButton>();
         buttonComponent.level = level + 1;
         buttonComponent.SetText("Level " + (level + 1).ToString());
+        if(i > levelsCompleted)
+        {
+            newLevelButton.GetComponent<Button>().interactable = false;
+            
+        }
         newLevelButton.onClick.AddListener(() => loadMyScene(newLevelButton));
         level++;
         isLeft = !isLeft;
