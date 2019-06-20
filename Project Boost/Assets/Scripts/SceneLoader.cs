@@ -19,4 +19,12 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene(scene);
     }
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }

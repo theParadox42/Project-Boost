@@ -96,12 +96,12 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 70
+  m_fontSize: 180
   m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 30
-  m_fontSizeMax: 100
+  m_fontSizeMax: 300
   m_fontStyle: 33
   m_textAlignment: 514
   m_characterSpacing: 0

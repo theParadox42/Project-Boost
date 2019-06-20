@@ -41,6 +41,7 @@ public class Rocket : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+        print(Application.persistentDataPath);
     }
 
     // Update is called once per frame
@@ -111,7 +112,11 @@ public class Rocket : MonoBehaviour
     {
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
         SceneManager.LoadScene(nextSceneIndex);
-        SaveProgress.SavePlayer(SceneManager.GetActiveScene().buildIndex);
+        int levelsUnlocked = SceneManager.GetActiveScene().buildIndex;
+        if(levelsUnlocked > SaveProgress.RetrieveData().levelsCompleted)
+        {
+            SaveProgress.SavePlayer(levelsUnlocked);
+        }
     }
 
     #endregion 

@@ -7,6 +7,7 @@ public class LevelButtonLoader : MonoBehaviour
     [SerializeField] Button LevelButtonLeft;
     [SerializeField] Button LevelButtonRight;
     [SerializeField] SceneLoader sceneLoader;
+    [SerializeField] float distanceBetweenButtons = 200f;
 
     // Start is called before the first frame update
     void Start()
@@ -14,7 +15,7 @@ public class LevelButtonLoader : MonoBehaviour
         int levelsFinished = SaveProgress.RetrieveData().levelsCompleted;
         int levelCount = SceneManager.sceneCountInBuildSettings - 3;
         bool isLeft = true;
-        float by = 50f + 19.75f;
+        float by = -distanceBetweenButtons / 2;
         int level = 0;
         RectTransform parentRectTransform = transform.parent.GetComponent<RectTransform>();
         for (var i = 0; i < levelCount; i++)
@@ -23,16 +24,12 @@ public class LevelButtonLoader : MonoBehaviour
         }
     }
 
-    private void CreateButton(ref bool isLeft,
-                              ref float by,
-                              ref int level,
-                              RectTransform parentRectTransform,
-                              int levelsCompleted,
-                              int i)
+    private void CreateButton(ref bool isLeft, ref float by, ref int level, RectTransform parentRectTransform, int levelsCompleted, int i)
     {
         Button newLevelButton = Instantiate(isLeft ? LevelButtonLeft : LevelButtonRight, parentRectTransform) as Button;
         var rectTransform = newLevelButton.GetComponent<RectTransform>();
-        rectTransform.position = new Vector3(rectTransform.position.x, by, 0f);
+        rectTransform.localPosition = new Vector3(10f, by, 0f);
+        //rectTransform.SetPositionAndRotation(new Vector3(rectTransform.position.x, by, 0f), new Quaternion());
         void loadMyScene(Button self)
         {
             int loadLevel = self.GetComponent<LevelButton>().level;
@@ -46,12 +43,14 @@ public class LevelButtonLoader : MonoBehaviour
             newLevelButton.GetComponent<Button>().interactable = false;
             
         }
+
         newLevelButton.onClick.AddListener(() => loadMyScene(newLevelButton));
         level++;
         isLeft = !isLeft;
+
         if (isLeft)
         {
-            by -= 100f;
+            by -= distanceBetweenButtons;
         }
     }
 }
