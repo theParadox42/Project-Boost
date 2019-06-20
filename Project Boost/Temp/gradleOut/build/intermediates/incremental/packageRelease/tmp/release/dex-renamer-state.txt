@@ -1,4 +1,0 @@
-#Thu Jun 20 13:28:43 MDT 2019
-base.0=/Users/nathaniel/Desktop/code-stuff/unity-stuff/Project-Boost/Project Boost/Temp/gradleOut/build/intermediates/transforms/dexMerger/release/0
-path.0=classes.dex
-renamed.0=classes.dex
