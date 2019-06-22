@@ -3,6 +3,8 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - LevelButton
     - LevelButtonLoader
+    - MobileOnly
+    - NotMobile
     - Oscillator
     - ProgressComponent
     - Rocket
@@ -67,13 +69,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10432}
     - Class: 114
-      Script: {instanceID: 10444}
+      Script: {instanceID: 10446}
     - Class: 114
-      Script: {instanceID: 10602}
+      Script: {instanceID: 10604}
     - Class: 114
-      Script: {instanceID: 10860}
+      Script: {instanceID: 10862}
     - Class: 114
-      Script: {instanceID: 10938}
+      Script: {instanceID: 10940}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -130,11 +132,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10432}
     - Class: 114
-      Script: {instanceID: 10476}
+      Script: {instanceID: 10444}
     - Class: 114
-      Script: {instanceID: 10602}
+      Script: {instanceID: 10478}
     - Class: 114
-      Script: {instanceID: 20476}
+      Script: {instanceID: 10604}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -182,6 +184,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
+    - Class: 102
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
@@ -205,7 +209,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10432}
     - Class: 114
-      Script: {instanceID: 10602}
+      Script: {instanceID: 10604}
+    - Class: 114
+      Script: {instanceID: 12624}
+    - Class: 114
+      Script: {instanceID: 12630}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -286,7 +294,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10432}
     - Class: 114
-      Script: {instanceID: 10602}
+      Script: {instanceID: 10604}
+    - Class: 114
+      Script: {instanceID: 12624}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -367,7 +377,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10432}
     - Class: 114
-      Script: {instanceID: 10602}
+      Script: {instanceID: 10604}
+    - Class: 114
+      Script: {instanceID: 12624}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -446,7 +458,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10432}
     - Class: 114
-      Script: {instanceID: 10602}
+      Script: {instanceID: 10604}
+    - Class: 114
+      Script: {instanceID: 12624}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -527,7 +541,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10432}
     - Class: 114
-      Script: {instanceID: 10602}
+      Script: {instanceID: 10604}
+    - Class: 114
+      Script: {instanceID: 12624}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -608,7 +624,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10432}
     - Class: 114
-      Script: {instanceID: 10602}
+      Script: {instanceID: 10604}
+    - Class: 114
+      Script: {instanceID: 12624}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -689,7 +707,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10432}
     - Class: 114
-      Script: {instanceID: 10602}
+      Script: {instanceID: 10604}
+    - Class: 114
+      Script: {instanceID: 12624}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -770,7 +790,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10432}
     - Class: 114
-      Script: {instanceID: 10602}
+      Script: {instanceID: 10604}
+    - Class: 114
+      Script: {instanceID: 12624}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -851,7 +873,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10432}
     - Class: 114
-      Script: {instanceID: 10602}
+      Script: {instanceID: 10604}
+    - Class: 114
+      Script: {instanceID: 12624}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -934,7 +958,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10432}
     - Class: 114
-      Script: {instanceID: 10602}
+      Script: {instanceID: 10604}
+    - Class: 114
+      Script: {instanceID: 12624}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -991,7 +1017,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10432}
     - Class: 114
-      Script: {instanceID: 10602}
+      Script: {instanceID: 10604}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -2035,6 +2061,12 @@ ScriptsOnlyBuild:
     className: TMP_FontAsset
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ProgressComponent
+  - hash:
+      serializedVersion: 2
       Hash: e1300922cc039f41ab46a47f4cb05898
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -2692,7 +2724,13 @@ ScriptsOnlyBuild:
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: ProgressComponent
+    className: MobileOnly
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: NotMobile
   platform: 2
   scenePathNames:
   - Assets/Scenes/Home.unity
