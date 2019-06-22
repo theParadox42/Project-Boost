@@ -41,7 +41,6 @@ public class Rocket : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
-        print(Application.persistentDataPath);
     }
 
     // Update is called once per frame
@@ -157,28 +156,8 @@ public class Rocket : MonoBehaviour
         bool rightPressed = false;
         bool leftPressed = false;
         float yPercent = 0.7f;
-        float x1Percent = 0.4f;
-        float x2Percent = 0.7f;
-
-        if ((Input.GetMouseButton(0) || Input.GetMouseButton(1)) && Input.touches.Length == 0) {
-            if (Input.mousePosition.y <= Screen.height * (1 - yPercent))
-            {
-                float tx = Input.mousePosition.x;
-                float sw = Screen.width;
-                if (tx <= sw * x1Percent)
-                {
-                    thrustPressed = true;
-                }
-                else if (tx <= sw * x2Percent)
-                {
-                    leftPressed = true;
-                }
-                else
-                {
-                    rightPressed = true;
-                }
-            }
-        }
+        float x1Percent = 0.5f;
+        float x2Percent = 0.75f;
 
         foreach (Touch touch in Input.touches)
         {
