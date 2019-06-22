@@ -3,6 +3,8 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - LevelButton
     - LevelButtonLoader
+    - MobileOnly
+    - NotMobile
     - Oscillator
     - ProgressComponent
     - Rocket
@@ -182,6 +184,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
+    - Class: 102
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
@@ -206,6 +210,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10432}
     - Class: 114
       Script: {instanceID: 10604}
+    - Class: 114
+      Script: {instanceID: 12624}
+    - Class: 114
+      Script: {instanceID: 12630}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -287,6 +295,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10432}
     - Class: 114
       Script: {instanceID: 10604}
+    - Class: 114
+      Script: {instanceID: 12624}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -368,6 +378,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10432}
     - Class: 114
       Script: {instanceID: 10604}
+    - Class: 114
+      Script: {instanceID: 12624}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -447,6 +459,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10432}
     - Class: 114
       Script: {instanceID: 10604}
+    - Class: 114
+      Script: {instanceID: 12624}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -528,6 +542,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10432}
     - Class: 114
       Script: {instanceID: 10604}
+    - Class: 114
+      Script: {instanceID: 12624}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -609,6 +625,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10432}
     - Class: 114
       Script: {instanceID: 10604}
+    - Class: 114
+      Script: {instanceID: 12624}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -690,6 +708,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10432}
     - Class: 114
       Script: {instanceID: 10604}
+    - Class: 114
+      Script: {instanceID: 12624}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -771,6 +791,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10432}
     - Class: 114
       Script: {instanceID: 10604}
+    - Class: 114
+      Script: {instanceID: 12624}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -852,6 +874,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10432}
     - Class: 114
       Script: {instanceID: 10604}
+    - Class: 114
+      Script: {instanceID: 12624}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -935,6 +959,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10432}
     - Class: 114
       Script: {instanceID: 10604}
+    - Class: 114
+      Script: {instanceID: 12624}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -2693,6 +2719,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MobileOnly
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: NotMobile
   platform: 13
   scenePathNames:
   - Assets/Scenes/Home.unity

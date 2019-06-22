@@ -8,8 +8,9 @@ public class MobileOnly : MonoBehaviour
     void Start()
     {
         #if UNITY_IOS
+        #elif UNITY_ANDROID
         #else
-            Destroy(gameObject);
+        Destroy(gameObject);
         #endif
     }
 }

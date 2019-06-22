@@ -9,6 +9,8 @@ public class NotMobile : MonoBehaviour
     {
         #if UNITY_IOS
             Destroy(gameObject);
+        #elif UNITY_ANDROID
+            Destroy(gameObject);
         #endif
     }
 }
