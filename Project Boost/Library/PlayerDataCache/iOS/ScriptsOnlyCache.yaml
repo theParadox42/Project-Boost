@@ -4,6 +4,7 @@ ScriptsOnlyBuild:
     - LevelButton
     - LevelButtonLoader
     - MobileOnly
+    - NotMobile
     - Oscillator
     - ProgressComponent
     - Rocket
@@ -211,6 +212,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10604}
     - Class: 114
       Script: {instanceID: 12624}
+    - Class: 114
+      Script: {instanceID: 12630}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
